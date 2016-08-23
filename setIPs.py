@@ -13,7 +13,7 @@ def main():
     list_interfaces()
     get_IP('eth0')
     get_cidr('eth0')
-    get_subnet('24')
+    get_subnet('19')
 
 def list_interfaces():
     for _, dir, _ in os.walk('/sys/class/net/'):
@@ -27,16 +27,15 @@ def get_IP(interface):
 
 def get_cidr(interface):
     cidr = os.popen("ip a show dev " + interface + " | sed -rn 's/inet\s.*\/([0-9]{1,3}).*/\\1/p'").read()
-    print(cidr.strip())
 
 def get_subnet(cidr):
     octect = int(cidr.strip()) // 8
     remainder = int(cidr.strip()) % 8
-    subnet = ""
+    subnet = ['0', '0', '0', '0']
     for i in range(octect):
-       subnet += '255.'
-    subnet += str(256 - 2 ** (8 - remainder)) + '.0'
-    print(subnet)
+       subnet[i] = '255'
+    subnet[octect] = str(256 - 2 ** (8 - remainder))
+    print('.'.join(subnet))
 
 if __name__ == '__main__':
     main()
