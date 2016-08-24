@@ -11,8 +11,8 @@ args = parser.parse_args()
 interfaces = {}
 def main():
     list_interfaces()
-    get_IP('eth0')
-    get_cidr('eth0')
+    get_IP('wlp2s0')
+    get_cidr('wlp2s0')
     get_subnet('19')
 
 def list_interfaces():
@@ -35,7 +35,7 @@ def get_subnet(cidr):
     for i in range(octect):
        subnet[i] = '255'
     subnet[octect] = str(256 - 2 ** (8 - remainder))
-    print('.'.join(subnet))
+    return '.'.join(subnet)
 
 if __name__ == '__main__':
     main()
