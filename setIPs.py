@@ -33,6 +33,9 @@ def get_everything(interface, ipSettings, gateway):
     subnetMatch = re.search(r'inet\s.*\/([0-9]{1,3}).*', ipSettings)
     interfaces[interface]['netmask'] = get_subnet(subnetMatch.group(1))
 
+    stateMatch = re.search(r'state ([D-W]{2,7}) ', ipSettings)
+    interfaces[interface]['state'] = stateMatch.group(1)
+
     gatewayMatch = re.search(r'default\svia\s([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*', gateway)
     interfaces[interface]['gateway'] = gatewayMatch.group(1)
 
