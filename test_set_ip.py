@@ -9,3 +9,6 @@ def test_get_subnet_24():
 
 def test_get_subnet_19():
     assert setIPs.get_subnet('19') == '255.255.224.0'
+
+def test_get_subnet_1():
+    assert setIPs.get_subnet('1') == '128.0.0.0'
