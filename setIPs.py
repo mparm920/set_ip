@@ -10,6 +10,7 @@ parser.add_argument("-i", "--interface", help="Choose a network interface e.g. e
 args = parser.parse_args()
 
 interfaces = {}
+userSelection = []
 def main():
     list_interfaces()
     print(interfaces)
@@ -19,6 +20,7 @@ def list_interfaces():
         for index, interface in enumerate(dir):
             interfaces[interface] = {}
             get_IP(interface)
+            userSelection.append(interface)
             print(str(index) + ') ' + interface)
 
 def get_IP(interface):
