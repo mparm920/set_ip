@@ -47,8 +47,12 @@ def get_subnet(cidr):
     subnet = ['0', '0', '0', '0']
     for i in range(octect):
        subnet[i] = '255'
-    subnet[octect] = str(256 - 2 ** (8 - remainder))
+    if remainder != 0:
+        subnet[octect] = str(256 - 2 ** (8 - remainder))
     return '.'.join(subnet)
+
+def set_IP(interface):
+    pass    
 
 if __name__ == '__main__':
     main()
